@@ -1,4 +1,5 @@
 const Square = (data, x, y) => {
+  if (data === "@") data = 1;
   return {
     get x() {
       return x;

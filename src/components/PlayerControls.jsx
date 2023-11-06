@@ -28,19 +28,19 @@ const PlayerControls = () => {
         default:
           break;
       }
-      // copies an object while also keeping getters and setters intact
-      const copyObj = (obj) => {
-        var mycopy = {};
-        Object.getOwnPropertyNames(obj).forEach(function (prop) {
-          var descriptor = Object.getOwnPropertyDescriptor(obj, prop);
-          Object.defineProperty(mycopy, prop, descriptor);
-        });
-        return mycopy;
-      };
-      const updatedPlayer = copyObj(player);
+    }
+    // copies an object while also keeping getters and setters intact
+    const copyObj = (obj) => {
+      var mycopy = {};
+      Object.getOwnPropertyNames(obj).forEach(function (prop) {
+        var descriptor = Object.getOwnPropertyDescriptor(obj, prop);
+        Object.defineProperty(mycopy, prop, descriptor);
+      });
+      return mycopy;
+    };
+    const updatedPlayer = copyObj(player);
 
-      setPlayer(updatedPlayer);
-    } else console.log("YOU'RE DEAD BOZO");
+    setPlayer(updatedPlayer);
   };
 
   useKeyPress(

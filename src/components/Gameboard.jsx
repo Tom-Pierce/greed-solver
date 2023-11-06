@@ -9,7 +9,6 @@ const Gameboard = ({ board, player }) => {
     }
     return borderLine + "+";
   };
-
   return (
     <div className="gameboard-container">
       <div>{createBorderLine()}</div>
@@ -24,7 +23,10 @@ const Gameboard = ({ board, player }) => {
                 : `num-${square.data}`;
 
               return (
-                <span key={`${i}${j}`} className={customClassName}>
+                <span
+                  key={`${j}${i}`}
+                  className={`${`${j}-${i}`} ${customClassName}`}
+                >
                   {player.isMoveIncluded(player.prevMoves, { x: j, y: i })
                     ? j === player.x && i === player.y
                       ? "@"
@@ -42,6 +44,7 @@ const Gameboard = ({ board, player }) => {
       })}
       <div>{createBorderLine()}</div>
       <div>{`score: ${player.score}`}</div>
+      <div>{player.alive ? "" : "game over"}</div>
     </div>
   );
 };

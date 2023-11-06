@@ -11,6 +11,10 @@ body {
   white-space: pre;
 }
 
+.player {
+  color: white;
+}
+
 .num-1 {
   color: rgb(166, 89, 89);
 }

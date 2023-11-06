@@ -1,4 +1,11 @@
-const Player = (x, y, board, prevMoves = [{ x: x, y: y }], score = 0) => {
+const Player = (
+  x,
+  y,
+  board,
+  prevMoves = [{ x: x, y: y }],
+  score = 0,
+  moves = []
+) => {
   let alive = true;
 
   const isInBounds = (pos) => {
@@ -37,7 +44,9 @@ const Player = (x, y, board, prevMoves = [{ x: x, y: y }], score = 0) => {
         if (!alive) break;
         if (coordinate === "y") y = y + 1 * direction;
         if (coordinate === "x") x = x + 1 * direction;
-        if (!isInBounds({ x: x, y: y })) kill(coordinate, direction);
+        if (!isInBounds({ x: x, y: y })) {
+          kill(coordinate, direction);
+        }
         if (alive && isMoveIncluded(prevMoves, { x: x, y: y })) {
           kill(coordinate, direction);
         }
@@ -48,15 +57,19 @@ const Player = (x, y, board, prevMoves = [{ x: x, y: y }], score = 0) => {
 
     switch (direction) {
       case "up":
+        moves.push("up");
         movePlayer("y", -1, getMovesNum({ x: x, y: y - 1 }));
         break;
       case "down":
+        moves.push("down");
         movePlayer("y", 1, getMovesNum({ x: x, y: y + 1 }));
         break;
       case "right":
+        moves.push("right");
         movePlayer("x", 1, getMovesNum({ x: x + 1, y: y }));
         break;
       case "left":
+        moves.push("left");
         movePlayer("x", -1, getMovesNum({ x: x - 1, y: y }));
         break;
 
@@ -80,6 +93,9 @@ const Player = (x, y, board, prevMoves = [{ x: x, y: y }], score = 0) => {
     },
     get prevMoves() {
       return prevMoves;
+    },
+    get moves() {
+      return moves;
     },
     move,
     isMoveIncluded,
