@@ -15,6 +15,18 @@ const Player = (x, y, board, prevMoves = [{ x: x, y: y }], score = 0) => {
     else return 1;
   };
 
+  const isMoveIncluded = (prevMoves, currentMove) =>
+    prevMoves.some(
+      (prevMove) => prevMove.x === currentMove.x && prevMove.y === currentMove.y
+    );
+
+  const kill = (coordinate, direction) => {
+    // kill moves the player back one step to match the original game
+    alive = false;
+    if (coordinate === "y") y = y - 1 * direction;
+    if (coordinate === "x") x = x - 1 * direction;
+  };
+
   const move = (direction) => {
     if (!alive) return;
     const movePlayer = (coordinate, direction, movesNum) => {
@@ -25,11 +37,12 @@ const Player = (x, y, board, prevMoves = [{ x: x, y: y }], score = 0) => {
         if (!alive) break;
         if (coordinate === "y") y = y + 1 * direction;
         if (coordinate === "x") x = x + 1 * direction;
-        if (board.gameboard[y][x].travelled) alive = false;
+        if (!isInBounds({ x: x, y: y })) kill(coordinate, direction);
+        if (alive && isMoveIncluded(prevMoves, { x: x, y: y })) {
+          kill(coordinate, direction);
+        }
         prevMoves.push({ x: x, y: y });
         score += 1;
-        if (!isInBounds({ x: x, y: y })) alive = false;
-        console.log(alive);
       }
     };
 
@@ -69,6 +82,7 @@ const Player = (x, y, board, prevMoves = [{ x: x, y: y }], score = 0) => {
       return prevMoves;
     },
     move,
+    isMoveIncluded,
   };
 };
 

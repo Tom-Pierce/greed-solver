@@ -1,11 +1,6 @@
 import PropTypes from "prop-types";
 
 const Gameboard = ({ board, player }) => {
-  const isMoveIncluded = (prevMoves, currentMove) =>
-    prevMoves.some(
-      (prevMove) => prevMove.x === currentMove.x && prevMove.y === currentMove.y
-    );
-
   // Function to create the top and bottom border lines
   const createBorderLine = () => {
     let borderLine = "+";
@@ -30,7 +25,7 @@ const Gameboard = ({ board, player }) => {
 
               return (
                 <span key={`${i}${j}`} className={customClassName}>
-                  {isMoveIncluded(player.prevMoves, { x: j, y: i })
+                  {player.isMoveIncluded(player.prevMoves, { x: j, y: i })
                     ? j === player.x && i === player.y
                       ? "@"
                       : j === 0
@@ -46,8 +41,7 @@ const Gameboard = ({ board, player }) => {
         );
       })}
       <div>{createBorderLine()}</div>
-      <div>{player.score}</div>
-      <div>{player.alive ? "true" : "false"}</div>
+      <div>{`score: ${player.score}`}</div>
     </div>
   );
 };
