@@ -23,8 +23,13 @@ const Gameboard = ({ board, player }) => {
           <div key={i}>
             <span>|</span>
             {row.map((square, j) => {
+              const isAtSymbol = j === player.x && i === player.y;
+              const customClassName = isAtSymbol
+                ? "at-symbol-class"
+                : `num-${square.data}`;
+
               return (
-                <span key={`${i}${j}`}>
+                <span key={`${i}${j}`} className={customClassName}>
                   {isMoveIncluded(player.prevMoves, { x: j, y: i })
                     ? j === player.x && i === player.y
                       ? "@"
@@ -41,6 +46,8 @@ const Gameboard = ({ board, player }) => {
         );
       })}
       <div>{createBorderLine()}</div>
+      <div>{player.score}</div>
+      <div>{player.alive ? "true" : "false"}</div>
     </div>
   );
 };

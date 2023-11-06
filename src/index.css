@@ -10,3 +10,39 @@ body {
 .blank-space {
   white-space: pre;
 }
+
+.num-1 {
+  color: rgb(166, 89, 89);
+}
+
+.num-2 {
+  color: rgb(166, 140, 89);
+}
+
+.num-3 {
+  color: rgb(140, 166, 89);
+}
+
+.num-4 {
+  color: rgb(89, 166, 89);
+}
+
+.num-5 {
+  color: rgb(89, 166, 140);
+}
+
+.num-6 {
+  color: rgb(89, 140, 166);
+}
+
+.num-7 {
+  color: rgb(89, 89, 166);
+}
+
+.num-8 {
+  color: rgb(140, 89, 166);
+}
+
+.num-9 {
+  color: rgb(166, 89, 140);
+}

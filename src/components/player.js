@@ -29,6 +29,7 @@ const Player = (x, y, board, prevMoves = [{ x: x, y: y }], score = 0) => {
         prevMoves.push({ x: x, y: y });
         score += 1;
         if (!isInBounds({ x: x, y: y })) alive = false;
+        console.log(alive);
       }
     };
 
