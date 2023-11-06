@@ -1,0 +1,12 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+.gameboard-container {
+  font-family: "Courier New", monospace;
+}
+
+.blank-space {
+  white-space: pre;
+}
