@@ -2,7 +2,7 @@ const Player = (
   x,
   y,
   board,
-  prevMoves = [{ x: x, y: y }],
+  prevPos = [{ x: x, y: y }],
   score = 0,
   moves = []
 ) => {
@@ -22,9 +22,9 @@ const Player = (
     else return 1;
   };
 
-  const isMoveIncluded = (prevMoves, currentMove) =>
-    prevMoves.some(
-      (prevMove) => prevMove.x === currentMove.x && prevMove.y === currentMove.y
+  const isMoveIncluded = (prevPos, currentMove) =>
+    prevPos.some(
+      (prevPos) => prevPos.x === currentMove.x && prevPos.y === currentMove.y
     );
 
   const kill = (coordinate, direction) => {
@@ -47,10 +47,10 @@ const Player = (
         if (!isInBounds({ x: x, y: y })) {
           kill(coordinate, direction);
         }
-        if (alive && isMoveIncluded(prevMoves, { x: x, y: y })) {
+        if (alive && isMoveIncluded(prevPos, { x: x, y: y })) {
           kill(coordinate, direction);
         }
-        prevMoves.push({ x: x, y: y });
+        prevPos.push({ x: x, y: y });
         score += 1;
       }
     };
@@ -91,14 +91,15 @@ const Player = (
     get score() {
       return score;
     },
-    get prevMoves() {
-      return prevMoves;
+    get prevPos() {
+      return prevPos;
     },
     get moves() {
       return moves;
     },
     move,
     isMoveIncluded,
+    isInBounds,
   };
 };
 

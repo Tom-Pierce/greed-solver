@@ -27,7 +27,7 @@ const Gameboard = ({ board, player }) => {
                   key={`${j}${i}`}
                   className={`${`${j}-${i}`} ${customClassName}`}
                 >
-                  {player.isMoveIncluded(player.prevMoves, { x: j, y: i })
+                  {player.isMoveIncluded(player.prevPos, { x: j, y: i })
                     ? j === player.x && i === player.y
                       ? "@"
                       : j === 0
